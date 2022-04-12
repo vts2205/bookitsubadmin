@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Dashboard',
+      title: 'Dashboard!',
       theme: ThemeData(
         scaffoldBackgroundColor: light,
         textTheme: GoogleFonts.mulishTextTheme(Theme.of(context).textTheme)
