@@ -46,8 +46,6 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final hours = _dateTime.hour.toString().padLeft(2, '0');
-    final minutes = _dateTime.minute.toString().padLeft(2, '0');
     return Container(
       child: Column(
         children: [
@@ -67,225 +65,197 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
             ),
           ),
           const SizedBox(height: 50),
-          Align(
-              alignment: Alignment.topLeft,
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: blue,
-                    ),
-                    child: IconButton(
-                        onPressed: () {
-                          Get.defaultDialog(
-                              barrierDismissible: false,
-                              title: "Manual Booking",
-                              titleStyle: TextStyle(
-                                  color: blue,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w900),
-                              radius: 5,
-                              content: StatefulBuilder(
-                                  builder: (thisLowerContext, innerSetState) {
-                                return Column(children: [
-                                  TextField(
-                                    cursorColor: green,
-                                    decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.all(10),
-                                        hintText: "Enter Name",
-                                        border: const OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide:
-                                                BorderSide(color: green))),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextField(
-                                    cursorColor: green,
-                                    decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.all(10),
-                                        hintText: "Enter Phone Number",
-                                        border: const OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide:
-                                                BorderSide(color: green))),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  TextField(
-                                    cursorColor: green,
-                                    decoration: InputDecoration(
-                                        contentPadding:
-                                            const EdgeInsets.all(10),
-                                        hintText: "Enter Pickup Location",
-                                        border: const OutlineInputBorder(),
-                                        focusedBorder: OutlineInputBorder(
-                                            borderSide:
-                                                BorderSide(color: green))),
-                                  ),
-                                  ..._getDropLocation(),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      DropdownButton(
-                                        hint: Text(
-                                          selectedRideItem == null
-                                              ? 'Select Package'
-                                              : selectedRideItem,
-                                          style: const TextStyle(fontSize: 12),
-                                        ),
-                                        items: rideitems.map((valueItem) {
-                                          return DropdownMenuItem(
-                                              value: valueItem,
-                                              child: Text(
-                                                valueItem,
-                                                style: const TextStyle(
-                                                    fontSize: 12),
-                                              ));
-                                        }).toList(),
-                                        onChanged: (newValue) => setState(() {
-                                          selectedRideItem = newValue;
-                                          print('selectedRideItem.........');
-                                          print(newValue);
-                                          print(selectedRideItem);
-                                        }),
-                                      ),
-                                      DropdownButton(
-                                        hint: Text(
-                                          selectedPackageItem == null
-                                              ? 'Select Rental'
-                                              : selectedPackageItem,
-                                          style: const TextStyle(fontSize: 12),
-                                        ),
-                                        items: packageitems.map((valueItem) {
-                                          return DropdownMenuItem(
-                                              value: valueItem,
-                                              child: Text(
-                                                valueItem,
-                                                style: const TextStyle(
-                                                    fontSize: 12),
-                                              ));
-                                        }).toList(),
-                                        onChanged: (newValue) => setState(() {
-                                          selectedPackageItem = newValue;
-                                          print('selectedPackageItem.........');
-                                          print(newValue);
-                                          print(selectedPackageItem);
-                                        }),
-                                      ),
-                                      DropdownButton(
-                                        hint: const Text(
-                                          'Select Cab',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                        items: cabitems.map((valueItem) {
-                                          return DropdownMenuItem(
-                                              value: valueItem,
-                                              child: Text(
-                                                valueItem,
-                                                style: const TextStyle(
-                                                    fontSize: 12),
-                                              ));
-                                        }).toList(),
-                                        onChanged: (newValue) => setState(() {
-                                          selectedCabItem = newValue;
-                                        }),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text('Total Kms :',
-                                              style: TextStyle(
-                                                  fontSize: 15, color: blue)),
-                                          Text('100',
-                                              style: TextStyle(
-                                                  fontSize: 15, color: green)),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text('Total Fare :',
-                                              style: TextStyle(
-                                                  fontSize: 15, color: blue)),
-                                          Text('2000',
-                                              style: TextStyle(
-                                                  fontSize: 15, color: green)),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      const Text('Pickup Date :',
-                                          style: TextStyle(fontSize: 12)),
-                                      TextButton(
-                                          onPressed: () {
-                                            pickDateTime();
-                                          },
-                                          child: Text(
-                                            '${_dateTime.day}/${_dateTime.month}/${_dateTime.year} $hours:$minutes',
-                                            style: TextStyle(
-                                                fontSize: 12, color: blue),
-                                          )),
-                                      const Text('Drop Date :',
-                                          style: TextStyle(fontSize: 12)),
-                                      TextButton(
-                                          onPressed: () {
-                                            pickDateTime();
-                                          },
-                                          child: Text(
-                                            '${_dateTime.day}/${_dateTime.month}/${_dateTime.year} $hours:$minutes',
-                                            style: TextStyle(
-                                                fontSize: 12, color: blue),
-                                          ))
-                                    ],
-                                  ),
-                                  const SizedBox(height: 30),
-                                  ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          primary: blue,
-                                          padding: const EdgeInsets.all(15)),
-                                      onPressed: () {
-                                        Get.back();
-                                      },
-                                      child: const Text(
-                                        "Add",
-                                        style: TextStyle(
-                                            fontSize: 15, color: Colors.white),
-                                      ))
-                                ]);
-                              }));
-                        },
-                        icon: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        )),
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    'New Booking',
-                    style: TextStyle(
-                        fontSize: 15, color: blue, fontWeight: FontWeight.bold),
-                  )
-                ],
-              )),
+          Align(alignment: Alignment.topLeft, child: buildAddBooking()),
+          const SizedBox(height: 50),
+          const Divider(thickness: 2),
           Expanded(
               child: ListView(
-            children: [buildManualBookingTable()],
+            children: [
+              Text(
+                'Booking List',
+                style: TextStyle(
+                    fontSize: 20, color: blue, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              buildManualBookingTable()
+            ],
           ))
         ],
       ),
+    );
+  }
+
+  buildAddBooking() {
+    final hours = _dateTime.hour.toString().padLeft(2, '0');
+    final minutes = _dateTime.minute.toString().padLeft(2, '0');
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Add Booking',
+          style:
+              TextStyle(fontSize: 20, color: blue, fontWeight: FontWeight.bold),
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                cursorColor: green,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(10),
+                    hintText: "Enter Name",
+                    border: const OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: green))),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextField(
+                cursorColor: green,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(10),
+                    hintText: "Enter Phone Number",
+                    border: const OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: green))),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextField(
+                cursorColor: green,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.all(10),
+                    hintText: "Enter Pickup Location",
+                    border: const OutlineInputBorder(),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: green))),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+                child: Column(
+              children: [
+                ..._getDropLocation(),
+              ],
+            ))
+          ],
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Card(
+                child: DropdownButton(
+                  hint: Text(
+                    selectedRideItem ?? 'Select Package',
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                  items: rideitems.map((valueItem) {
+                    return DropdownMenuItem(
+                        value: valueItem,
+                        child: Text(
+                          valueItem,
+                          style: const TextStyle(fontSize: 15),
+                        ));
+                  }).toList(),
+                  onChanged: (newValue) => setState(() {
+                    selectedRideItem = newValue;
+                  }),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Card(
+                child: DropdownButton(
+                  hint: Text(
+                    selectedPackageItem ?? 'Select Rental',
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                  items: packageitems.map((valueItem) {
+                    return DropdownMenuItem(
+                        value: valueItem,
+                        child: Text(
+                          valueItem,
+                          style: const TextStyle(fontSize: 15),
+                        ));
+                  }).toList(),
+                  onChanged: (newValue) => setState(() {
+                    selectedPackageItem = newValue;
+                  }),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Card(
+                child: DropdownButton(
+                  hint: Text(
+                    selectedCabItem ?? 'Select Cab',
+                    style: const TextStyle(fontSize: 15),
+                  ),
+                  items: cabitems.map((valueItem) {
+                    return DropdownMenuItem(
+                        value: valueItem,
+                        child: Text(
+                          valueItem,
+                          style: const TextStyle(fontSize: 15),
+                        ));
+                  }).toList(),
+                  onChanged: (newValue) => setState(() {
+                    selectedCabItem = newValue;
+                  }),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Text('Total Kms :',
+                      style: TextStyle(fontSize: 15, color: blue)),
+                  Text('100', style: TextStyle(fontSize: 15, color: green)),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
+                  Text('Total Fare :',
+                      style: TextStyle(fontSize: 15, color: blue)),
+                  Text('2000', style: TextStyle(fontSize: 15, color: green)),
+                ],
+              ),
+            ),
+            Row(
+              children: [
+                const Text('Pickup Date :', style: TextStyle(fontSize: 15)),
+                TextButton(
+                    onPressed: () {
+                      pickDateTime();
+                    },
+                    child: Text(
+                      '${_dateTime.day}/${_dateTime.month}/${_dateTime.year} $hours:$minutes',
+                      style: TextStyle(fontSize: 15, color: blue),
+                    )),
+              ],
+            ),
+            Row(
+              children: [
+                const Text('Drop Date :', style: TextStyle(fontSize: 15)),
+                TextButton(
+                    onPressed: () {
+                      pickDateTime();
+                    },
+                    child: Text(
+                      '${_dateTime.day}/${_dateTime.month}/${_dateTime.year} $hours:$minutes',
+                      style: TextStyle(fontSize: 15, color: blue),
+                    )),
+              ],
+            ),
+          ],
+        )
+      ],
     );
   }
 
@@ -452,7 +422,6 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
             SizedBox(
               width: 16,
             ),
-            // we need add button at last friends row only
             _addRemoveButton(i == dropLocationList.length - 1, i),
           ],
         ),
