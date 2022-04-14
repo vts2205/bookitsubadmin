@@ -17,6 +17,8 @@ class RidesBookedPage extends StatefulWidget {
 class _RidesBookedPageState extends State<RidesBookedPage> {
   DateTime _dateTime = DateTime(25, 03, 2022, 6, 51);
 
+  bool isVisible = false;
+
   final List<Map<String, String>> driversinfo = [
     {
       "id": "001",
@@ -62,7 +64,7 @@ class _RidesBookedPageState extends State<RidesBookedPage> {
               child: ListView(
             children: [
               //buildDriverShimmer()
-              buildDriversTable()
+              if (isVisible) buildDriversTable()
             ],
           )),
         ],
@@ -71,50 +73,72 @@ class _RidesBookedPageState extends State<RidesBookedPage> {
   }
 
   buildFromToDate() {
-    return Row(
+    return Column(
       children: [
-        TextButton(
-            onPressed: () {},
-            child: Text('Today', style: TextStyle(fontSize: 15, color: blue))),
-        Container(
-          width: 1,
-          height: 30,
-          color: Colors.black,
+        Row(
+          children: [
+            TextButton(
+                onPressed: () {
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
+                },
+                child:
+                    Text('Today', style: TextStyle(fontSize: 15, color: blue))),
+            Container(
+              width: 1,
+              height: 30,
+              color: Colors.black,
+            ),
+            TextButton(
+                onPressed: () {
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
+                },
+                child: Text('Yesterday',
+                    style: TextStyle(fontSize: 15, color: blue))),
+          ],
         ),
-        TextButton(
-            onPressed: () {},
-            child:
-                Text('Yesterday', style: TextStyle(fontSize: 15, color: blue))),
-        Container(
-          width: 1,
-          height: 30,
-          color: Colors.black,
-        ),
-        const SizedBox(width: 10),
-        const Text('From :', style: TextStyle(fontSize: 15)),
-        TextButton(
-            onPressed: () {
-              pickDateTime();
-            },
-            child: Text(
-              '${_dateTime.day}/${_dateTime.month}/${_dateTime.year}',
-              style: TextStyle(fontSize: 15, color: blue),
-            )),
-        Container(
-          width: 1,
-          height: 30,
-          color: Colors.black,
-        ),
-        const SizedBox(width: 10),
-        const Text('To :', style: TextStyle(fontSize: 15)),
-        TextButton(
-            onPressed: () {
-              pickDateTime();
-            },
-            child: Text(
-              '${_dateTime.day}/${_dateTime.month}/${_dateTime.year}',
-              style: TextStyle(fontSize: 15, color: blue),
-            ))
+        Row(
+          children: [
+            const Text('From :', style: TextStyle(fontSize: 15)),
+            TextButton(
+                onPressed: () {
+                  pickDateTime();
+                },
+                child: Text(
+                  '${_dateTime.day}/${_dateTime.month}/${_dateTime.year}',
+                  style: TextStyle(fontSize: 15, color: blue),
+                )),
+            Container(
+              width: 1,
+              height: 30,
+              color: Colors.black,
+            ),
+            const SizedBox(width: 10),
+            const Text('To :', style: TextStyle(fontSize: 15)),
+            TextButton(
+                onPressed: () {
+                  pickDateTime();
+                },
+                child: Text(
+                  '${_dateTime.day}/${_dateTime.month}/${_dateTime.year}',
+                  style: TextStyle(fontSize: 15, color: blue),
+                )),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: blue),
+                onPressed: () {
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
+                },
+                child: const Text(
+                  'Submit',
+                  style: TextStyle(color: Colors.white),
+                ))
+          ],
+        )
       ],
     );
   }
