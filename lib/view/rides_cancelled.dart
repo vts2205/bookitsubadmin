@@ -21,7 +21,8 @@ class RidesCancelledPage extends StatelessWidget {
       "drop": "Thiruvarur",
       "pickupdate": "20/02/2022",
       "dropdate": "25/02/2022",
-      "cancelledby" : "driver"
+      "cancelledby": "driver",
+      "reason": "Enter reason"
     },
   ];
 
@@ -31,7 +32,7 @@ class RidesCancelledPage extends StatelessWidget {
       child: Column(
         children: [
           Obx(
-                () => Row(
+            () => Row(
               children: [
                 Container(
                     margin: EdgeInsets.only(
@@ -45,38 +46,14 @@ class RidesCancelledPage extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 50),
-          Align(
-            alignment: Alignment.topLeft,
-            child: buildSearchBar(),
-          ),
           Expanded(
               child: ListView(
-                children: [
-                  //buildDriverShimmer()
-                  buildDriversTable()
-                ],
-              )),
+            children: [
+              //buildDriverShimmer()
+              buildDriversTable()
+            ],
+          )),
         ],
-      ),
-    );
-  }
-
-  buildSearchBar() {
-    return Container(
-      width: 300,
-      height: 40,
-      child: TextField(
-        cursorColor: green,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(10),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(color: green)),
-          suffixIcon: Icon(Icons.search, color: green),
-          hintText: "Search by phone number",
-        ),
       ),
     );
   }
@@ -127,70 +104,81 @@ class RidesCancelledPage extends StatelessWidget {
               DataColumn(
                 label: Text('Cancelled By'),
               ),
+              DataColumn(
+                label: Text('reason'),
+              ),
             ],
             rows: driversinfo
                 .map((e) => DataRow(cells: [
-              DataCell(CustomText(
-                text: (e["id"]),
-                size: 12,
-                weight: FontWeight.normal,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["username"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["drivername"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["package"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["cabtype"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["pickup"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["drop"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["pickupdate"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["dropdate"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-              DataCell(CustomText(
-                text: (e["cancelledby"]),
-                weight: FontWeight.normal,
-                size: 12,
-                color: Colors.black,
-              )),
-            ]))
+                      DataCell(CustomText(
+                        text: (e["id"]),
+                        size: 12,
+                        weight: FontWeight.normal,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["username"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["drivername"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["package"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["cabtype"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["pickup"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["drop"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["pickupdate"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["dropdate"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["cancelledby"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(TextField(
+                          cursorColor: green,
+                          decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(5),
+                              hintText: e["reason"],
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: green),
+                              )))),
+                    ]))
                 .toList()));
   }
 
@@ -233,15 +221,15 @@ class RidesCancelledPage extends StatelessWidget {
             ],
             rows: driversinfo
                 .map((e) => const DataRow(cells: [
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-              DataCell(ShimmerWidget.rectangular(height: 16)),
-            ]))
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                      DataCell(ShimmerWidget.rectangular(height: 16)),
+                    ]))
                 .toList()));
   }
 }

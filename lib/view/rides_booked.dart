@@ -7,8 +7,15 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class RidesBookedPage extends StatelessWidget {
+class RidesBookedPage extends StatefulWidget {
   RidesBookedPage({Key key}) : super(key: key);
+
+  @override
+  State<RidesBookedPage> createState() => _RidesBookedPageState();
+}
+
+class _RidesBookedPageState extends State<RidesBookedPage> {
+  DateTime _dateTime = DateTime(25, 03, 2022, 6, 51);
 
   final List<Map<String, String>> driversinfo = [
     {
@@ -20,6 +27,9 @@ class RidesBookedPage extends StatelessWidget {
       "drop": "Thiruvarur",
       "pickupdate": "20/02/2022",
       "dropdate": "25/02/2022",
+      "km": "100 KM",
+      "price": "2000",
+      "status": "completed"
     },
   ];
 
@@ -46,7 +56,7 @@ class RidesBookedPage extends StatelessWidget {
           const SizedBox(height: 50),
           Align(
             alignment: Alignment.topLeft,
-            child: buildSearchBar(),
+            child: buildFromToDate(),
           ),
           Expanded(
               child: ListView(
@@ -60,24 +70,71 @@ class RidesBookedPage extends StatelessWidget {
     );
   }
 
-  buildSearchBar() {
-    return Container(
-      width: 300,
-      height: 40,
-      child: TextField(
-        cursorColor: green,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(10),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(color: green)),
-          suffixIcon: Icon(Icons.search, color: green),
-          hintText: "Search by phone number",
+  buildFromToDate() {
+    return Row(
+      children: [
+        TextButton(
+            onPressed: () {},
+            child: Text('Today', style: TextStyle(fontSize: 15, color: blue))),
+        Container(
+          width: 1,
+          height: 30,
+          color: Colors.black,
         ),
-      ),
+        TextButton(
+            onPressed: () {},
+            child:
+                Text('Yesterday', style: TextStyle(fontSize: 15, color: blue))),
+        Container(
+          width: 1,
+          height: 30,
+          color: Colors.black,
+        ),
+        const SizedBox(width: 10),
+        const Text('From :', style: TextStyle(fontSize: 15)),
+        TextButton(
+            onPressed: () {
+              pickDateTime();
+            },
+            child: Text(
+              '${_dateTime.day}/${_dateTime.month}/${_dateTime.year}',
+              style: TextStyle(fontSize: 15, color: blue),
+            )),
+        Container(
+          width: 1,
+          height: 30,
+          color: Colors.black,
+        ),
+        const SizedBox(width: 10),
+        const Text('To :', style: TextStyle(fontSize: 15)),
+        TextButton(
+            onPressed: () {
+              pickDateTime();
+            },
+            child: Text(
+              '${_dateTime.day}/${_dateTime.month}/${_dateTime.year}',
+              style: TextStyle(fontSize: 15, color: blue),
+            ))
+      ],
     );
   }
+
+  Future pickDateTime() async {
+    DateTime date = await pickDate();
+    if (date == null) return;
+
+    final dateTime = DateTime(date.day, date.month, date.year);
+
+    setState(() {
+      this._dateTime = dateTime;
+    });
+  }
+
+  Future<DateTime> pickDate() => showDatePicker(
+      context: context,
+      initialDate: _dateTime,
+      firstDate: DateTime(2021),
+      lastDate: DateTime(2100));
 
   buildDriversTable() {
     return Container(
@@ -120,6 +177,15 @@ class RidesBookedPage extends StatelessWidget {
               ),
               DataColumn(
                 label: Text('Drop Date'),
+              ),
+              DataColumn(
+                label: Text('KM'),
+              ),
+              DataColumn(
+                label: Text('Price'),
+              ),
+              DataColumn(
+                label: Text('Status'),
               ),
             ],
             rows: driversinfo
@@ -171,6 +237,24 @@ class RidesBookedPage extends StatelessWidget {
                         weight: FontWeight.normal,
                         size: 12,
                         color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["km"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["price"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["status"]),
+                        weight: FontWeight.bold,
+                        size: 15,
+                        color: Colors.green,
                       )),
                     ]))
                 .toList()));

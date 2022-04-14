@@ -1,7 +1,6 @@
 const OverviewPageRoute = "Overview";
 const ProfilePageRoute = "Profile";
 const ManualBookingRoute = "Manual Booking";
-const BillValueRoute = "Pricing";
 const RidesBookedRoute = "Rides Booked";
 const RidesInProgressRoute = "Rides in Progress";
 const RidesCompletedRoute = "Rides Completed";
@@ -12,7 +11,6 @@ List sideMenuItems = [
   OverviewPageRoute,
   ProfilePageRoute,
   ManualBookingRoute,
-  BillValueRoute,
   RidesBookedRoute,
   RidesInProgressRoute,
   RidesCompletedRoute,

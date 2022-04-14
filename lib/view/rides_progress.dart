@@ -44,11 +44,6 @@ class RidesInProgressPage extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 50),
-          Align(
-            alignment: Alignment.topLeft,
-            child: buildSearchBar(),
-          ),
           Expanded(
               child: ListView(
             children: [
@@ -57,25 +52,6 @@ class RidesInProgressPage extends StatelessWidget {
             ],
           )),
         ],
-      ),
-    );
-  }
-
-  buildSearchBar() {
-    return Container(
-      width: 300,
-      height: 40,
-      child: TextField(
-        cursorColor: green,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.all(10),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(color: green)),
-          suffixIcon: Icon(Icons.search, color: green),
-          hintText: "Search by phone number",
-        ),
       ),
     );
   }

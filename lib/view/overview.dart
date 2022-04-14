@@ -13,36 +13,6 @@ import 'package:get/get.dart';
 class OverviewPage extends StatelessWidget {
   OverviewPage({Key key}) : super(key: key);
 
-  final List<Map<String, String>> availabledriversinfo = [
-    {
-      "id": "001",
-      "name": "nivy",
-      "email": "nivy@gmail.com",
-      "phone": "6382136565",
-      "location": "thiruvarur",
-      "rating": "4.5",
-      "action": "block"
-    },
-    {
-      "id": "002",
-      "name": "priya",
-      "email": "priya@gmail.com",
-      "phone": "7867997754",
-      "location": "coimbatore",
-      "rating": "4.7",
-      "action": "block"
-    },
-    {
-      "id": "003",
-      "name": "arun",
-      "email": "arun@gmail.com",
-      "phone": "6382136556",
-      "location": "cbe",
-      "rating": "4.3",
-      "action": "block"
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -78,7 +48,6 @@ class OverviewPage extends StatelessWidget {
                 buildDriverSectionLarge(context)
               else
                 buildDriverSectionSmall(context),
-              buildAvailableDriversTable(context)
             ],
           ))
         ],
@@ -371,116 +340,6 @@ class OverviewPage extends StatelessWidget {
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildAvailableDriversTable(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: active.withOpacity(.4), width: .5),
-        boxShadow: [
-          BoxShadow(
-              offset: const Offset(0, 6),
-              color: lightGrey.withOpacity(.1),
-              blurRadius: 12)
-        ],
-        borderRadius: BorderRadius.circular(8),
-      ),
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(bottom: 30),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Row(
-            children: [
-              const SizedBox(width: 10),
-              CustomText(
-                text: "Available Drivers",
-                color: lightGrey,
-                weight: FontWeight.bold,
-                size: 20,
-              ),
-            ],
-          ),
-          DataTable2(
-              columnSpacing: 12,
-              horizontalMargin: 12,
-              minWidth: 600,
-              columns: const [
-                DataColumn(label: Text("ID")),
-                DataColumn(label: Text("Name")),
-                DataColumn(label: Text("Email")),
-                DataColumn(label: Text("Phone Number")),
-                DataColumn(label: Text('Location')),
-                DataColumn(label: Text('Rating')),
-                DataColumn(label: Text('Action')),
-              ],
-              rows: availabledriversinfo
-                  .map((e) => DataRow(cells: [
-                        DataCell(CustomText(
-                          text: (e["id"]),
-                          weight: FontWeight.normal,
-                          size: 12,
-                          color: Colors.black,
-                        )),
-                        DataCell(CustomText(
-                          text: (e["name"]),
-                          weight: FontWeight.normal,
-                          size: 12,
-                          color: Colors.black,
-                        )),
-                        DataCell(CustomText(
-                          text: (e["email"]),
-                          weight: FontWeight.normal,
-                          size: 12,
-                          color: Colors.black,
-                        )),
-                        DataCell(CustomText(
-                          text: (e["phone"]),
-                          weight: FontWeight.normal,
-                          size: 12,
-                          color: Colors.black,
-                        )),
-                        DataCell(CustomText(
-                            text: (e["location"]),
-                            weight: FontWeight.normal,
-                            size: 12,
-                            color: Colors.black)),
-                        DataCell(Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.star,
-                              color: Colors.deepOrange,
-                              size: 15,
-                            ),
-                            const SizedBox(width: 5),
-                            CustomText(
-                                text: (e["rating"]),
-                                weight: FontWeight.normal,
-                                size: 12,
-                                color: Colors.black)
-                          ],
-                        )),
-                        DataCell(Container(
-                            decoration: BoxDecoration(
-                              color: light,
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: active, width: .5),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
-                            child: CustomText(
-                              text: (e["action"]),
-                              color: active.withOpacity(.7),
-                              weight: FontWeight.bold,
-                              size: 12,
-                            ))),
-                      ]))
-                  .toList()),
         ],
       ),
     );
