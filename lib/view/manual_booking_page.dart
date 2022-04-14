@@ -21,18 +21,19 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
       "name": "nivy",
       "phone": "6382136565",
       "package": "Rental",
-      "cabtype": "Hatchback",
+      "cabtype": "Mini",
       "pickup": "Gandhipuram",
       "drop": "Trichy",
       "pickupdate": "25.03.2022 11:45 AM",
-      "dropdate": "25.03.2022 02:00 PM"
+      "dropdate": "25.03.2022 02:00 PM",
+      "action": "Cancel"
     }
   ];
 
   List rideitems = ['Local', 'Rental', 'Outstation', 'Tour Package'];
   String selectedRideItem;
 
-  List cabitems = ['Hatchback', 'Sedan', 'SUV'];
+  List cabitems = ['Mini', 'Sedan', 'SUV'];
   String selectedCabItem;
 
   @override
@@ -107,7 +108,7 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
                                       selectedRideItem == null
                                           ? 'Select Package'
                                           : selectedRideItem,
-                                      style: TextStyle(fontSize: 12),
+                                      style: const TextStyle(fontSize: 12),
                                     ),
                                     items: rideitems.map((valueItem) {
                                       return DropdownMenuItem(
@@ -127,7 +128,7 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
                                   ),
                                   DropdownButton(
                                     hint: const Text(
-                                      'Select Package',
+                                      'Select Cab',
                                       style: TextStyle(fontSize: 12),
                                     ),
                                     items: cabitems.map((valueItem) {
@@ -290,6 +291,9 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
               DataColumn(
                 label: Text('Drop Date'),
               ),
+              DataColumn(
+                label: Text('Action'),
+              ),
             ],
             rows: manualBookingInfo
                 .map((e) => DataRow(cells: [
@@ -341,6 +345,20 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
                         size: 12,
                         color: Colors.black,
                       )),
+                      DataCell(Container(
+                          decoration: BoxDecoration(
+                            color: light,
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: active, width: .5),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          child: CustomText(
+                            text: (e["action"]),
+                            color: active.withOpacity(.7),
+                            weight: FontWeight.bold,
+                            size: 12,
+                          ))),
                     ]))
                 .toList()));
   }

@@ -92,8 +92,17 @@ class OverviewPage extends StatelessWidget {
     return Row(
       children: [
         InfoCard(
-          title: "Rides in progress",
+          title: "Rides Booked",
           value: "7",
+          onTap: () {},
+          topColor: active,
+        ),
+        SizedBox(
+          width: _width / 64,
+        ),
+        InfoCard(
+          title: "Rides in Progress",
+          value: "32",
           onTap: () {},
           topColor: Colors.orange,
         ),
@@ -110,19 +119,10 @@ class OverviewPage extends StatelessWidget {
           width: _width / 64,
         ),
         InfoCard(
-          title: "Cancelled Rides",
+          title: "Rides Cancelled",
           value: "3",
           topColor: Colors.redAccent,
           onTap: () {},
-        ),
-        SizedBox(
-          width: _width / 64,
-        ),
-        InfoCard(
-          title: "Scheduled Rides",
-          value: "32",
-          onTap: () {},
-          topColor: active,
         ),
       ],
     );
@@ -137,19 +137,19 @@ class OverviewPage extends StatelessWidget {
         Row(
           children: [
             InfoCard(
-              title: "Rides in progress",
-              value: "7",
+              title: "Rides Booked",
+              value: "32",
               onTap: () {},
-              topColor: Colors.orange,
+              topColor: active,
             ),
             SizedBox(
               width: _width / 64,
             ),
             InfoCard(
-              title: "Rides Completed",
-              value: "17",
-              topColor: Colors.lightGreen,
+              title: "Rides in progress",
+              value: "7",
               onTap: () {},
+              topColor: Colors.orange,
             ),
           ],
         ),
@@ -159,19 +159,19 @@ class OverviewPage extends StatelessWidget {
         Row(
           children: [
             InfoCard(
-              title: "Cancelled Rides",
-              value: "3",
-              topColor: Colors.redAccent,
+              title: "Rides Completed",
+              value: "17",
+              topColor: Colors.lightGreen,
               onTap: () {},
             ),
             SizedBox(
               width: _width / 64,
             ),
             InfoCard(
-              title: "Scheduled Rides",
-              value: "32",
+              title: "Rides Cancelled",
+              value: "3",
+              topColor: Colors.redAccent,
               onTap: () {},
-              topColor: active,
             ),
           ],
         ),
@@ -186,6 +186,14 @@ class OverviewPage extends StatelessWidget {
       height: 400,
       child: Column(
         children: [
+          InfoCardSmall(
+            title: "Rides Booked",
+            value: "32",
+            onTap: () {},
+          ),
+          SizedBox(
+            height: _width / 64,
+          ),
           InfoCardSmall(
             title: "Rides in progress",
             value: "7",
@@ -204,16 +212,8 @@ class OverviewPage extends StatelessWidget {
             height: _width / 64,
           ),
           InfoCardSmall(
-            title: "Cancelled Rides",
+            title: "Rides Cancelled",
             value: "3",
-            onTap: () {},
-          ),
-          SizedBox(
-            height: _width / 64,
-          ),
-          InfoCardSmall(
-            title: "Scheduled Rides",
-            value: "32",
             onTap: () {},
           ),
         ],

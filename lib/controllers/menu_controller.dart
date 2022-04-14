@@ -1,4 +1,3 @@
-
 import 'package:bookitsubadminpanel/constants/style.dart';
 import 'package:bookitsubadminpanel/routing/routes.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +29,14 @@ class MenuController extends GetxController {
         return _customIcon(Icons.account_circle_outlined, itemName);
       case ManualBookingRoute:
         return _customIcon(Icons.directions_car_rounded, itemName);
+      case RidesBookedRoute:
+        return _customIcon(Icons.access_time, itemName);
+      case RidesInProgressRoute:
+        return _customIcon(Icons.loop_rounded, itemName);
+      case RidesCompletedRoute:
+        return _customIcon(Icons.check_circle_outlined, itemName);
+      case RidesCancelledRoute:
+        return _customIcon(Icons.cancel_outlined, itemName);
       case AuthenticationPageRoute:
         return _customIcon(Icons.exit_to_app, itemName);
       default:
