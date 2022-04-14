@@ -20,7 +20,7 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
   final List<Map<String, String>> manualBookingInfo = [
     {
       "name": "nivy",
-      "phone": "6382136565",
+      "phone": "63821*****",
       "package": "Rental",
       "cabtype": "Mini",
       "pickup": "Gandhipuram",
