@@ -21,6 +21,8 @@ class RidesInProgressPage extends StatelessWidget {
       "drop": "Thiruvarur",
       "pickupdate": "20/02/2022",
       "dropdate": "25/02/2022",
+      "otp1": "1234",
+      "otp2": "5678"
     },
   ];
 
@@ -99,6 +101,12 @@ class RidesInProgressPage extends StatelessWidget {
               DataColumn(
                 label: Text('Drop Date'),
               ),
+              DataColumn(
+                label: Text('Start OTP'),
+              ),
+              DataColumn(
+                label: Text('End OTP'),
+              ),
             ],
             rows: driversinfo
                 .map((e) => DataRow(cells: [
@@ -152,6 +160,18 @@ class RidesInProgressPage extends StatelessWidget {
                       )),
                       DataCell(CustomText(
                         text: (e["dropdate"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["otp1"]),
+                        weight: FontWeight.normal,
+                        size: 12,
+                        color: Colors.black,
+                      )),
+                      DataCell(CustomText(
+                        text: (e["otp2"]),
                         weight: FontWeight.normal,
                         size: 12,
                         color: Colors.black,

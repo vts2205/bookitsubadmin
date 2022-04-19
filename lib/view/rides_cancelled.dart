@@ -22,7 +22,8 @@ class RidesCancelledPage extends StatelessWidget {
       "pickupdate": "20/02/2022",
       "dropdate": "25/02/2022",
       "cancelledby": "driver",
-      "reason": "Enter reason"
+      "reason": "Enter reason",
+      "action": "Submit"
     },
   ];
 
@@ -105,7 +106,10 @@ class RidesCancelledPage extends StatelessWidget {
                 label: Text('Cancelled By'),
               ),
               DataColumn(
-                label: Text('reason'),
+                label: Text('Reason'),
+              ),
+              DataColumn(
+                label: Text('Action'),
               ),
             ],
             rows: driversinfo
@@ -178,6 +182,13 @@ class RidesCancelledPage extends StatelessWidget {
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: green),
                               )))),
+                      DataCell(ElevatedButton(
+                          style: ElevatedButton.styleFrom(primary: blue),
+                          onPressed: () {},
+                          child: const Text(
+                            'Submit',
+                            style: TextStyle(fontSize: 15),
+                          ))),
                     ]))
                 .toList()));
   }
