@@ -1,11 +1,14 @@
 import 'package:bookitsubadminpanel/constants/controllers.dart';
 import 'package:bookitsubadminpanel/constants/style.dart';
 import 'package:bookitsubadminpanel/helpers/responsiveness.dart';
+import 'package:bookitsubadminpanel/models/manual_booking_list_model.dart';
+import 'package:bookitsubadminpanel/services/apiservices.dart';
 import 'package:bookitsubadminpanel/widgets/custom_text.dart';
 import 'package:bookitsubadminpanel/widgets/drop_location_list.dart';
 import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ManualBookingPage extends StatefulWidget {
   const ManualBookingPage({Key key}) : super(key: key);
@@ -15,23 +18,31 @@ class ManualBookingPage extends StatefulWidget {
 }
 
 class _ManualBookingPageState extends State<ManualBookingPage> {
-  DateTime _dateTime = DateTime(25, 03, 2022, 6, 51);
+  final name = TextEditingController();
+  final phone = TextEditingController();
+  final pickup = TextEditingController();
 
-  final List<Map<String, String>> manualBookingInfo = [
-    {
-      "name": "nivy",
-      "phone": "63821*****",
-      "package": "Rental",
-      "cabtype": "Mini",
-      "pickup": "Gandhipuram",
-      "drop": "Trichy",
-      "pickupdate": "25.03.2022 11:45 AM",
-      "dropdate": "25.03.2022 02:00 PM",
-      "km": "100 KM",
-      "price": "2000",
-      "action": "Cancel"
+  final box = GetStorage();
+
+  ManualBookingListModel manualBookingListModel;
+  var isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    manualBookingListModel = await APIService().manualBookingList();
+    if (manualBookingListModel != null) {
+      setState(() {
+        isLoading = true;
+      });
     }
-  ];
+  }
+
+  DateTime _dateTime = DateTime(25, 03, 2022, 6, 51);
 
   List rideitems = ['Local', 'Rental', 'Outstation', 'Tour Package'];
   String selectedRideItem;
@@ -110,6 +121,7 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
           children: [
             Expanded(
               child: TextField(
+                controller: name,
                 cursorColor: green,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(10),
@@ -122,6 +134,7 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
             const SizedBox(width: 10),
             Expanded(
               child: TextField(
+                controller: phone,
                 cursorColor: green,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(10),
@@ -134,6 +147,7 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
             const SizedBox(width: 10),
             Expanded(
               child: TextField(
+                controller: pickup,
                 cursorColor: green,
                 decoration: InputDecoration(
                     contentPadding: const EdgeInsets.all(10),
@@ -267,7 +281,17 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
         Center(
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(primary: blue),
-              onPressed: () {},
+              onPressed: () async {
+                var data = await APIService()
+                    .createManualBooking(name.text, phone.text, pickup.text);
+                if (data['success'] == true) {
+                  box.write("token", data["token"]);
+                  print('success');
+                } else {
+                  print('failed');
+                  return null;
+                }
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.20,
                 height: 45,
@@ -684,115 +708,132 @@ class _ManualBookingPageState extends State<ManualBookingPage> {
         ),
         padding: const EdgeInsets.all(16),
         margin: const EdgeInsets.only(bottom: 30),
-        child: DataTable2(
-            columnSpacing: 12,
-            horizontalMargin: 12,
-            minWidth: 600,
-            columns: const [
-              DataColumn(
-                label: Text("Name"),
-              ),
-              DataColumn(label: Text("Phone Number")),
-              DataColumn(label: Text("Package")),
-              DataColumn(label: Text("Cab Type")),
-              DataColumn(
-                label: Text('Pickup Location'),
-              ),
-              DataColumn(label: Text("Drop Location")),
-              DataColumn(
-                label: Text('Pickup Date'),
-              ),
-              DataColumn(
-                label: Text('Drop Date'),
-              ),
-              DataColumn(
-                label: Text('KM'),
-              ),
-              DataColumn(
-                label: Text('Price'),
-              ),
-              DataColumn(
-                label: Text('Action'),
-              ),
-            ],
-            rows: manualBookingInfo
-                .map((e) => DataRow(cells: [
-                      DataCell(CustomText(
-                        text: (e["name"]),
-                        size: 12,
-                        weight: FontWeight.normal,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["phone"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["package"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["cabtype"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["pickup"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["drop"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["pickupdate"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["dropdate"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["km"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(CustomText(
-                        text: (e["price"]),
-                        weight: FontWeight.normal,
-                        size: 12,
-                        color: Colors.black,
-                      )),
-                      DataCell(Container(
-                          decoration: BoxDecoration(
-                            color: light,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: active, width: .5),
-                          ),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
-                          child: CustomText(
-                            text: (e["action"]),
-                            color: active.withOpacity(.7),
-                            weight: FontWeight.bold,
-                            size: 12,
-                          ))),
-                    ]))
-                .toList()));
+        child: Visibility(
+          visible: isLoading,
+          child: isLoading == false
+              ? Container()
+              : DataTable2(
+                  columnSpacing: 12,
+                  horizontalMargin: 12,
+                  minWidth: 600,
+                  columns: const [
+                    DataColumn(
+                      label: Text("Id"),
+                    ),
+                    DataColumn(
+                      label: Text("Name"),
+                    ),
+                    DataColumn(label: Text("Phone Number")),
+                    DataColumn(label: Text("Package")),
+                    DataColumn(label: Text("Cab Type")),
+                    DataColumn(
+                      label: Text('Pickup Location'),
+                    ),
+                    DataColumn(label: Text("Drop Location")),
+                    DataColumn(
+                      label: Text('Pickup Date'),
+                    ),
+                    DataColumn(
+                      label: Text('Drop Date'),
+                    ),
+                    // DataColumn(
+                    //   label: Text('KM'),
+                    // ),
+                    // DataColumn(
+                    //   label: Text('Price'),
+                    // ),
+                    DataColumn(
+                      label: Text('Action'),
+                    ),
+                  ],
+                  rows: manualBookingListModel.userValue
+                      .map((e) => DataRow(cells: [
+                            DataCell(CustomText(
+                              text: (e.id.toString()),
+                              size: 12,
+                              weight: FontWeight.normal,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.name),
+                              size: 12,
+                              weight: FontWeight.normal,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.phonenumber),
+                              weight: FontWeight.normal,
+                              size: 12,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.package.toString()),
+                              weight: FontWeight.normal,
+                              size: 12,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.cab.toString()),
+                              weight: FontWeight.normal,
+                              size: 12,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.pickupLocation),
+                              weight: FontWeight.normal,
+                              size: 12,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.dropLocation.toString()),
+                              weight: FontWeight.normal,
+                              size: 12,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.pickupDate.toString()),
+                              weight: FontWeight.normal,
+                              size: 12,
+                              color: Colors.black,
+                            )),
+                            DataCell(CustomText(
+                              text: (e.dropDate.toString()),
+                              weight: FontWeight.normal,
+                              size: 12,
+                              color: Colors.black,
+                            )),
+                            // DataCell(CustomText(
+                            //   text: (e.),
+                            //   weight: FontWeight.normal,
+                            //   size: 12,
+                            //   color: Colors.black,
+                            // )),
+                            // DataCell(CustomText(
+                            //   text: (e["price"]),
+                            //   weight: FontWeight.normal,
+                            //   size: 12,
+                            //   color: Colors.black,
+                            // )),
+                            DataCell(Container(
+                                decoration: BoxDecoration(
+                                  color: light,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(color: active, width: .5),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12, vertical: 6),
+                                child: CustomText(
+                                  text: (e.status.toString()),
+                                  color: active.withOpacity(.7),
+                                  weight: FontWeight.bold,
+                                  size: 12,
+                                ))),
+                          ]))
+                      .toList()),
+          replacement: const Center(
+            child: CircularProgressIndicator(),
+          ),
+        ));
   }
 
   List<Widget> _getDropLocation() {

@@ -29,6 +29,8 @@ class MenuController extends GetxController {
         return _customIcon(Icons.account_circle_outlined, itemName);
       case ManualBookingRoute:
         return _customIcon(Icons.directions_car_rounded, itemName);
+      case DriversAddingRoute:
+        return _customIcon(Icons.person, itemName);
       case RidesBookedRoute:
         return _customIcon(Icons.access_time, itemName);
       case RidesInProgressRoute:

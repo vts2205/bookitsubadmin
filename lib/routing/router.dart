@@ -1,4 +1,5 @@
 import 'package:bookitsubadminpanel/routing/routes.dart';
+import 'package:bookitsubadminpanel/view/drivers.dart';
 import 'package:bookitsubadminpanel/view/manual_booking_page.dart';
 import 'package:bookitsubadminpanel/view/overview.dart';
 import 'package:bookitsubadminpanel/view/profile.dart';
@@ -13,9 +14,11 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case OverviewPageRoute:
       return _getPageRoute(OverviewPage());
     case ProfilePageRoute:
-      return _getPageRoute(const ProfilePage());
+      return _getPageRoute(ProfilePage());
     case ManualBookingRoute:
       return _getPageRoute(ManualBookingPage());
+    case DriversAddingRoute:
+      return _getPageRoute(AddDriversPage());
     case RidesBookedRoute:
       return _getPageRoute(RidesBookedPage());
     case RidesInProgressRoute:
