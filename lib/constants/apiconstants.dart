@@ -1,5 +1,5 @@
 class APIConstants {
-  static const baseUrl = 'http://3.109.60.160:8800';
+  static const baseUrl = 'http://3.110.225.148:8800';
 
   static const login = '/subadmin/login';
   static const getProfile = '/subadmin/getmyprofiledata';
