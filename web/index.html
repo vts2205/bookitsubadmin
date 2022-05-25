@@ -33,6 +33,56 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+
+<!-- Add for Firebase Storage: https://pub.dev/packages/firebase_storage -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+
+<!-- Add for Cloud Firestore: https://pub.dev/packages/cloud_firestore -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<!-- Add for Firebase Auth: https://pub.dev/packages/firebase_auth -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
+<!-- Add for Firebase Messaging: https://pub.dev/packages/firebase_messaging
+<script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-messaging.js"></script>
+-->
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    // navigator.serviceWorker.register("/flutter_service_worker.js");
+    navigator.serviceWorker.register("/firebase-messaging-sw.js");
+  });
+}
+</script>
+
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyAV2s5Zw4fgnJ-z8reuI7GBRJxSv1XTgoE",
+    authDomain: "bookitsubadmin.firebaseapp.com",
+    projectId: "bookitsubadmin",
+    storageBucket: "bookitsubadmin.appspot.com",
+    messagingSenderId: "445275009513",
+    appId: "1:445275009513:web:5e4beb8b65d3987b115b78",
+    measurementId: "G-1EQT41G79X"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
