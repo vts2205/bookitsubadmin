@@ -122,6 +122,24 @@ class _AddDriversPageState extends State<AddDriversPage> {
   PlatformFile rentalAgreement1;
   PlatformFile rentalAgreement2;
 
+  bool buttonPressed1 = false;
+  bool buttonPressed2 = false;
+  bool buttonPressed3 = false;
+  bool buttonPressed4 = false;
+  bool buttonPressed5 = false;
+  bool buttonPressed6 = false;
+  bool buttonPressed7 = false;
+  bool buttonPressed8 = false;
+  bool buttonPressed9 = false;
+  bool buttonPressed10 = false;
+  bool buttonPressed11 = false;
+  bool buttonPressed12 = false;
+  bool buttonPressed13 = false;
+  bool buttonPressed14 = false;
+  bool buttonPressed15 = false;
+  bool buttonPressed16 = false;
+  bool buttonPressed17 = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -343,29 +361,20 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  // frontImage != null
-                  //     ? Container(width: 50, height: 50, child: Image.memory())
-                  //     : const Text('No File'),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed1 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed1 = !buttonPressed1;
+                        });
                         frontImage = await galleryImage();
                       },
-                      child: Text('Upload',
+                      child: const Text('Upload',
                           style: TextStyle(
-                              color: blue,
+                              color: Colors.white,
                               fontSize: 17,
                               decoration: TextDecoration.underline))),
-                  // TextButton(
-                  //     onPressed: () async {
-                  //       frontImage = await galleryImage();
-                  //     },
-                  //     child: Text(
-                  //       'Upload',
-                  //       style: TextStyle(
-                  //           color: blue,
-                  //           fontSize: 17,
-                  //           decoration: TextDecoration.underline),
-                  //     ))
                 ],
               ),
             ),
@@ -385,14 +394,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed2 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed2 = !buttonPressed2;
+                        });
                         chaseNumberImage = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -400,6 +414,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -410,14 +425,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed3 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed3 = !buttonPressed3;
+                        });
                         rcFront = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -425,6 +445,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -435,14 +456,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed4 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed4 = !buttonPressed4;
+                        });
                         rcBack = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -450,6 +476,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -460,14 +487,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed5 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed5 = !buttonPressed5;
+                        });
                         insurance = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -490,14 +522,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed6 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed6 = !buttonPressed6;
+                        });
                         fcCopy = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -505,6 +542,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -515,14 +553,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed7 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed7 = !buttonPressed7;
+                        });
                         profilePhoto = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -530,6 +573,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -540,14 +584,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed8 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed8 = !buttonPressed8;
+                        });
                         licenseFront = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -555,6 +604,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -565,14 +615,18 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  RaisedButton(
+                      color: buttonPressed9 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed9 = !buttonPressed9;
+                        });
                         licenseBack = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -596,14 +650,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed10 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed10 = !buttonPressed10;
+                        });
                         aadhaarFront = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -611,6 +670,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -621,14 +681,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed11 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed11 = !buttonPressed11;
+                        });
                         aadhaarBack = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -636,6 +701,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -646,14 +712,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed12 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed12 = !buttonPressed12;
+                        });
                         panCard = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -677,14 +748,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed13 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed13 = !buttonPressed13;
+                        });
                         owneraadharFront = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -692,6 +768,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -702,14 +779,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed14 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed14 = !buttonPressed14;
+                        });
                         owneraadharBack = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -717,6 +799,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -727,14 +810,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed15 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed15 = !buttonPressed15;
+                        });
                         passbook = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -756,14 +844,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed16 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed16 = !buttonPressed16;
+                        });
                         rentalAgreement1 = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -771,6 +864,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(10),
@@ -781,14 +875,19 @@ class _AddDriversPageState extends State<AddDriversPage> {
                     size: 17,
                     color: green,
                   ),
-                  TextButton(
+                  const SizedBox(width: 5),
+                  RaisedButton(
+                      color: buttonPressed17 ? Colors.red : blue,
                       onPressed: () async {
+                        setState(() {
+                          buttonPressed17 = !buttonPressed17;
+                        });
                         rentalAgreement2 = await galleryImage();
                       },
-                      child: Text(
+                      child: const Text(
                         'Upload',
                         style: TextStyle(
-                            color: blue,
+                            color: Colors.white,
                             fontSize: 17,
                             decoration: TextDecoration.underline),
                       ))
@@ -796,6 +895,7 @@ class _AddDriversPageState extends State<AddDriversPage> {
               ),
             ),
           ),
+          const Spacer(),
           ElevatedButton(
               style: ElevatedButton.styleFrom(primary: blue),
               onPressed: () async {

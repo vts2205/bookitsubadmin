@@ -43,12 +43,10 @@ class UserValue {
     this.dropDate,
     this.package,
     this.rentalhour,
-    this.cab,
-    this.subadminId,
     this.tripStatus,
-    this.status,
-    this.createdAt,
-    this.updatedAt,
+    this.cab,
+    this.km,
+    this.price,
   });
 
   int id;
@@ -60,12 +58,10 @@ class UserValue {
   DateTime dropDate;
   String package;
   dynamic rentalhour;
-  String cab;
-  int subadminId;
   String tripStatus;
-  int status;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String cab;
+  int km;
+  String price;
 
   factory UserValue.fromJson(Map<String, dynamic> json) => UserValue(
         id: json["id"],
@@ -77,12 +73,10 @@ class UserValue {
         dropDate: DateTime.parse(json["drop_date"]),
         package: json["package"],
         rentalhour: json["rentalhour"],
-        cab: json["cab"],
-        subadminId: json["subadmin_id"],
         tripStatus: json["trip_status"],
-        status: json["status"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        cab: json["cab"],
+        km: json["km"] == null ? null : json["km"],
+        price: json["price"] == null ? null : json["price"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -95,11 +89,9 @@ class UserValue {
         "drop_date": dropDate.toIso8601String(),
         "package": package,
         "rentalhour": rentalhour,
-        "cab": cab,
-        "subadmin_id": subadminId,
         "trip_status": tripStatus,
-        "status": status,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "cab": cab,
+        "km": km == null ? null : km,
+        "price": price == null ? null : price,
       };
 }

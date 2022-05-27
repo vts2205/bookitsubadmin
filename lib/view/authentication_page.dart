@@ -1,6 +1,5 @@
 import 'package:bookitsubadminpanel/constants/style.dart';
 import 'package:bookitsubadminpanel/services/apiservices.dart';
-import 'package:bookitsubadminpanel/view/forgotpassword.dart';
 import 'package:bookitsubadminpanel/view/layout.dart';
 import 'package:bookitsubadminpanel/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
